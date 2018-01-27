@@ -1,4 +1,7 @@
-#!/usr/bin/env python
+"""
+django default manage file
+"""
+#!/usr/bin/env python3
 import os
 import sys
 
