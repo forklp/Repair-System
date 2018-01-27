@@ -1,6 +1,6 @@
 # frontend
 
-> frontend based on vue
+> Front App
 
 ## Build Setup
 
