@@ -1,7 +1,7 @@
 {
-  "name": "frontend",
+  "name": "snow",
   "version": "1.0.0",
-  "description": "Front App",
+  "description": "fallen",
   "author": "Eternal-A <15828377403@163.com>",
   "private": true,
   "scripts": {
