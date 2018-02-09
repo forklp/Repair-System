@@ -1,16 +1,18 @@
 <template>
   <div>
-    <img src="./assets/logo.png">
-    <p>Hello</p>
-    <p>Hello</p>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'App',
+  name: 'App',
 };
 </script>
 
-<style>
+<style scoped>
+* {
+  padding: 0;
+  margin: 0;
+}
 </style>
