@@ -1,4 +1,4 @@
-import cLogin from '../components/login';
+import cLogin from '../views/login';
 
 const routes = [
   { path: '/', component: cLogin },
