@@ -8,3 +8,6 @@
 
 # Virtualenv
 backend/env/
+
+# Database
+*.sqlite3
