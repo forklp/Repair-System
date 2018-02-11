@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'login',
   data() {
@@ -33,6 +35,12 @@ export default {
     };
   },
   methods: {
+    check() {
+      axios.get('user/login')
+        .then((response) => {
+          this.username_msg = response.data;
+        });
+    },
   },
   created() {
     document.title = '登录';

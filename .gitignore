@@ -11,3 +11,6 @@ backend/env/
 
 # Database
 *.sqlite3
+
+# python
+*.pyc
