@@ -16,7 +16,10 @@ import routes from './routes/index';
 Vue.use(museUI);
 Vue.use(VueRouter);
 
-// 获取 csrftoken
+// 添加原型方法
+Vue.prototype.$axios = axios;
+
+// 获取 csrftoken cookies
 axios.get('csrf/');
 
 Vue.config.productionTip = false;

@@ -20,14 +20,11 @@
       @click="check"
       class="btn"
       label="登录" />
-    <mu-raised-button
-      @click="post"
-      label="post" />
   </mu-paper>
 </template>
 
 <script>
-import axios from 'axios';
+import csrf from '../utils/csrf';
 
 export default {
   name: 'login',
@@ -39,16 +36,29 @@ export default {
   },
   methods: {
     check() {
-      axios.get('csrf/')
-        .then(() => {
-          this.username_msg = 'success!';
-        });
-    },
-    post() {
-      axios.post('user/login')
-        .then((response) => {
-          this.passwd_msg = response.data;
-        });
+      const username = this.$refs.username.$refs.input.value;
+      const password = this.$refs.password.$refs.input.value;
+      csrf.request.post('/user/login',
+        {
+          username,
+          password,
+        },
+      ).then((response) => {
+        const code = response.data;
+        switch (code) {
+          case (0): this.username_msg = '用户名不存在';
+            this.passwd_msg = '';
+            break;
+          case (1): this.username_msg = '';
+            this.passwd_msg = '密码错误';
+            break;
+          case (200): this.username_msg = '';
+            this.passwd_msg = '';
+            this.$router.push('home');
+            break;
+          default: break;
+        }
+      });
     },
   },
   created() {

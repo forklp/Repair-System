@@ -1,8 +1,10 @@
-import cLogin from '../views/login';
+import login from '../views/login';
+import home from '../views/home';
 
 const routes = [
-  { path: '/', component: cLogin },
-  { path: '/login', component: cLogin },
+  { path: '', component: login },
+  { path: 'login', component: login },
+  { path: 'home', component: home },
 ];
 
 export default routes;
