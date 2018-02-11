@@ -10,11 +10,16 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
+          '/csrf': {
+            target: 'http://0.0.0.0:8000',
+            changeOrigin: true,
+            pathRewrite: {
+            },
+          },
           '/user': {
             target: 'http://0.0.0.0:8000',
             changeOrigin: true,
             pathRewrite: {
-
             },
           }
         },

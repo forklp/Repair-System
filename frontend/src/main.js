@@ -6,6 +6,7 @@ import VueRouter from 'vue-router'; // 引入 Vue-Router
 import museUI from 'muse-ui'; // 导入 Muse UI (模板)
 import 'muse-ui/dist/muse-ui.css'; // 导入 Muse UI (样式)
 import 'muse-ui/dist/theme-carbon.css'; // 导入 Muse UI (主题)
+import axios from 'axios'; // 导入 axios
 
 // 相对路径引入
 import App from './App';
@@ -14,6 +15,9 @@ import routes from './routes/index';
 // Vue.use
 Vue.use(museUI);
 Vue.use(VueRouter);
+
+// 获取 csrftoken
+axios.get('csrf/');
 
 Vue.config.productionTip = false;
 

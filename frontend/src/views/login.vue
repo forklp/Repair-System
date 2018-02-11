@@ -20,6 +20,9 @@
       @click="check"
       class="btn"
       label="登录" />
+    <mu-raised-button
+      @click="post"
+      label="post" />
   </mu-paper>
 </template>
 
@@ -36,9 +39,15 @@ export default {
   },
   methods: {
     check() {
-      axios.get('user/login')
+      axios.get('csrf/')
+        .then(() => {
+          this.username_msg = 'success!';
+        });
+    },
+    post() {
+      axios.post('user/login')
         .then((response) => {
-          this.username_msg = response.data;
+          this.passwd_msg = response.data;
         });
     },
   },

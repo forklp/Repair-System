@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'user', # 用户系统
+    'devCSRF', # csrftoken
 ]
 
 MIDDLEWARE = [
