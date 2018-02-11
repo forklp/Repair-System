@@ -1,16 +1,21 @@
 <template>
   <div>
-    <router-view></router-view>
+    <router-view/>
   </div>
 </template>
 
 <script>
 export default {
   name: 'App',
+  data() {
+    return {
+      msg: 'como',
+    };
+  },
 };
 </script>
 
-<style scoped>
+<style>
 * {
   padding: 0;
   margin: 0;
