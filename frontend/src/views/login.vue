@@ -38,6 +38,22 @@ export default {
     check() {
       const username = this.$refs.username.$refs.input.value;
       const password = this.$refs.password.$refs.input.value;
+      let flag = 1;
+      if (username === '') {
+        this.username_msg = '请输入用户名';
+        flag = 0;
+      } else {
+        this.username_msg = '';
+      }
+      if (password === '') {
+        this.passwd_msg = '请输入密码';
+        flag = 0;
+      } else {
+        this.passwd_msg = '';
+      }
+      if (flag === 0) {
+        return 0;
+      }
       csrf.request.post('/user/login',
         {
           username,
@@ -59,6 +75,7 @@ export default {
           default: break;
         }
       });
+      return 0;
     },
   },
   created() {
