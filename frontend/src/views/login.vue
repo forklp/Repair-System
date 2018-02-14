@@ -88,7 +88,7 @@ export default {
 .paper {
   width: 300px;
   padding: 10px;
-  margin: 40px auto 10px;
+  margin: 90px auto 10px;
 }
 .title {
   letter-spacing: 3px;
