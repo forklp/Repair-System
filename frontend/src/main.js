@@ -10,7 +10,7 @@ import axios from 'axios'; // 导入 axios
 
 // 相对路径引入
 import App from './App';
-import routes from './routes/index';
+import router from './router/router';
 
 // Vue.use
 Vue.use(museUI);
@@ -23,10 +23,6 @@ Vue.prototype.$axios = axios;
 axios.get('csrf/');
 
 Vue.config.productionTip = false;
-
-const router = new VueRouter({
-  routes,
-});
 
 /* eslint-disable no-new */
 new Vue({

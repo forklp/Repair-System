@@ -37,6 +37,7 @@ export default {
     };
   },
   methods: {
+    // 检查填写情况
     check() {
       const username = this.$refs.username.$refs.input.value;
       const password = this.$refs.password.$refs.input.value;
@@ -58,6 +59,7 @@ export default {
       }
       return false;
     },
+    // 提交
     submit() {
       if (this.check() === false) {
         return 0;
