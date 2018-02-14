@@ -1,5 +1,6 @@
 <template>
   <mu-paper class="paper" :zDepth="1">
+    <form @keyup.enter="submit">
     <p class="title">飞扬·2018</p>
     <mu-text-field
       ref="username"
@@ -17,9 +18,10 @@
       label="密码"
       labelFloat />
     <mu-raised-button
-      @click="check"
+      @click="submit"
       class="btn"
       label="登录" />
+    </form>
   </mu-paper>
 </template>
 
@@ -38,22 +40,30 @@ export default {
     check() {
       const username = this.$refs.username.$refs.input.value;
       const password = this.$refs.password.$refs.input.value;
-      let flag = 1;
+      let flag = 0;
       if (username === '') {
         this.username_msg = '请输入用户名';
-        flag = 0;
       } else {
         this.username_msg = '';
+        flag += 1;
       }
       if (password === '') {
         this.passwd_msg = '请输入密码';
-        flag = 0;
       } else {
         this.passwd_msg = '';
+        flag += 1;
       }
-      if (flag === 0) {
+      if (flag === 2) {
+        return true;
+      }
+      return false;
+    },
+    submit() {
+      if (this.check() === false) {
         return 0;
       }
+      const username = this.$refs.username.$refs.input.value;
+      const password = this.$refs.password.$refs.input.value;
       csrf.request.post('/user/login',
         {
           username,
@@ -62,11 +72,8 @@ export default {
       ).then((response) => {
         const code = response.data;
         switch (code) {
-          case (0): this.username_msg = '用户名不存在';
+          case (0): this.username_msg = '请检查用户名和密码';
             this.passwd_msg = '';
-            break;
-          case (1): this.username_msg = '';
-            this.passwd_msg = '密码错误';
             break;
           case (200): this.username_msg = '';
             this.passwd_msg = '';

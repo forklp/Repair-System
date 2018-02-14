@@ -9,9 +9,8 @@ from .models import User
 def login(request):
     """
     用户登录
-    用户名不存在返回 '0'
-    用户名存在但密码错误返回 '1'
-    用户名存在且密码正确返回 '200'
+    用户登录成功返回 200
+    用户登录失败
     """
     msg = 0 # 状态码
     if request.method == 'POST':
@@ -20,10 +19,6 @@ def login(request):
         password = data['password']
         if User.objects.filter(name=name):
             if User.objects.filter(password=password):
-                msg = '200'
-            else:
-                msg = '1'
-        else:
-            msg = '0'
+                msg = 200
     response = HttpResponse(msg)
     return response
