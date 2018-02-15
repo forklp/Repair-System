@@ -79,7 +79,8 @@ export default {
             break;
           case (200): this.username_msg = '';
             this.passwd_msg = '';
-            this.$router.push('home');
+            this.$store.commit('login');
+            this.$router.push('/home');
             break;
           default: break;
         }
