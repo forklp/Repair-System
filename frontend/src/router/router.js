@@ -7,9 +7,9 @@ import home from '../views/home';
 import store from '../store/store';
 
 const routes = [
-  { path: '/', component: home, meta: { requireAuth: true } },
-  { path: '/login', component: login },
-  { path: '/home', component: home, meta: { requireAuth: true } },
+  { path: '/', component: home },
+  { path: '/login', component: login, meta: { no_requireAuth: true } },
+  { path: '/home', component: home },
 ];
 
 const router = new VueRouter({
@@ -23,16 +23,14 @@ if (cookie.getCookie('token')) {
 
 // 登录拦截。如果目标路由是需要登录的页面且用户未登录时重定向至登录页面。
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(r => r.meta.requireAuth)) {
-    if (store.state.token) {
-      next();
-    } else {
-      next({
-        path: '/login',
-      });
-    }
-  } else {
+  if (to.matched.some(r => r.meta.no_requireAuth)) {
     next();
+  } else if (store.state.token) {
+    next();
+  } else {
+    next({
+      path: '/login',
+    });
   }
 });
 

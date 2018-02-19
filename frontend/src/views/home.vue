@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <mu-appbar title="Title">
+      <mu-icon-button icon="menu" slot="left" />
+    </mu-appbar>
     <p>{{msg}}</p>
     <mu-raised-button @click="logout" label="注销" />
   </div>

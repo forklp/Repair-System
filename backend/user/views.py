@@ -3,7 +3,6 @@
 数据 api
 """
 import json
-import datetime
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password
 from .models import User
@@ -24,9 +23,6 @@ def login(request):
 
 def logout(request):
     request.session.flush()
-    expires_date = datetime.datetime.now()
     response = HttpResponse('Hit the road')
-    temp = request.COOKIES.get('token')
-    print(temp)
     response.delete_cookie('token')
     return response
