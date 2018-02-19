@@ -1,38 +1,35 @@
 <template>
-  <div>
-    <p>{{count}}</p>
-    <p>{{nums}}</p>
-    <mu-raised-button @click="change" />
+  <div class="container">
+    <p>{{msg}}</p>
+    <mu-raised-button @click="logout" label="注销" />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
-
 export default {
   name: 'home',
   data() {
     return {
-      num: 30,
+      msg: '',
     };
   },
   computed: {
-    nums() {
-      const after = this.num + 30;
-      return after;
-    },
-    ...mapState([
-      'count',
-    ]),
   },
   methods: {
-    change() {
-      this.$store.commit('increase');
+    logout() {
+      this.$axios.get('/user/logout')
+        .then((response) => {
+          this.msg = response.data;
+          this.$router.push('/login');
+          this.$store.commit('logout');
+        });
     },
   },
 };
 </script>
 
 <style scoped>
-
+.container {
+  padding: 20px;
+}
 </style>

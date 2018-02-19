@@ -3,22 +3,30 @@
 数据 api
 """
 import json
+import datetime
 from django.http import HttpResponse
+from django.contrib.auth.hashers import make_password
 from .models import User
 
 def login(request):
-    """
-    用户登录
-    用户登录成功返回 200
-    用户登录失败
-    """
-    msg = 0 # 状态码
+    response = HttpResponse(0)
     if request.method == 'POST':
         data = json.loads(request.body.decode()) # 把 Json 格式转化成 Dict 格式
         name = data['username']
         password = data['password']
         if User.objects.filter(name=name):
             if User.objects.filter(password=password):
-                msg = 200
-    response = HttpResponse(msg)
+                user_id = User.objects.get(name=name).id
+                request.session['id'] = user_id
+                response = HttpResponse(200)
+                response.set_cookie('token', make_password(user_id))
+    return response
+
+def logout(request):
+    request.session.flush()
+    expires_date = datetime.datetime.now()
+    response = HttpResponse('Hit the road')
+    temp = request.COOKIES.get('token')
+    print(temp)
+    response.delete_cookie('token')
     return response

@@ -1,5 +1,7 @@
 import VueRouter from 'vue-router';
 
+import cookie from '../utils/cookie';
+
 import login from '../views/login';
 import home from '../views/home';
 import store from '../store/store';
@@ -15,7 +17,7 @@ const router = new VueRouter({
 });
 
 // 页面刷新时，重新赋值token
-if (window.localStorage.getItem('token')) {
+if (cookie.getCookie('token')) {
   store.commit('login');
 }
 
