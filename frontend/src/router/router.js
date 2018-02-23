@@ -1,10 +1,15 @@
+import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+// Utils
 import cookie from '../utils/cookie';
 
+// routes files
 import login from '../views/login';
 import home from '../views/home';
 import store from '../store/store';
+
+Vue.use(VueRouter);
 
 const routes = [
   { path: '/', component: home },

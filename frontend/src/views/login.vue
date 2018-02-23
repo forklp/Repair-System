@@ -26,8 +26,6 @@
 </template>
 
 <script>
-import csrf from '../utils/csrf';
-
 export default {
   name: 'login',
   data() {
@@ -66,7 +64,7 @@ export default {
       }
       const username = this.$refs.username.$refs.input.value;
       const password = this.$refs.password.$refs.input.value;
-      csrf.request.post('/user/login',
+      this.axios.post('/user/login',
         {
           username,
           password,

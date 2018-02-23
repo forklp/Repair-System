@@ -1,10 +1,16 @@
 <template>
   <div class="container">
     <mu-appbar title="Title">
-      <mu-icon-button icon="menu" slot="left" />
+      <mu-icon-button
+        icon="menu"
+        slot="left"
+        @click="toggle" />
     </mu-appbar>
-    <p>{{msg}}</p>
     <mu-raised-button @click="logout" label="注销" />
+    <mu-drawer
+      :open="open"
+      :docked="false"
+      @close="toggle" />
   </div>
 </template>
 
@@ -13,19 +19,21 @@ export default {
   name: 'home',
   data() {
     return {
-      msg: '',
+      open: false,
     };
   },
   computed: {
   },
   methods: {
     logout() {
-      this.$axios.get('/user/logout')
-        .then((response) => {
-          this.msg = response.data;
+      this.axios.get('/user/logout')
+        .then(() => {
           this.$router.push('/login');
           this.$store.commit('logout');
         });
+    },
+    toggle() {
+      this.open = !this.open;
     },
   },
 };
@@ -33,6 +41,6 @@ export default {
 
 <style scoped>
 .container {
-  padding: 20px;
+  padding-bottom: 20px;
 }
 </style>
