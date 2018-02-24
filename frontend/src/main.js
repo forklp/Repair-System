@@ -8,7 +8,7 @@ import 'material-design-icons/iconfont/material-icons.css'; // 导入 Material-d
 
 // Modules
 import App from './App';
-import router from './router/router';
+import router from './router';
 import store from './store/store';
 import axios from './utils/http';
 

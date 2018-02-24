@@ -3,19 +3,12 @@ import VueRouter from 'vue-router';
 
 // Utils
 import cookie from '../utils/cookie';
-
-// routes files
-import login from '../views/login';
-import home from '../views/home';
 import store from '../store/store';
 
-Vue.use(VueRouter);
+// routes files
+import routes from './routes';
 
-const routes = [
-  { path: '/', component: home },
-  { path: '/login', component: login, meta: { no_requireAuth: true } },
-  { path: '/home', component: home },
-];
+Vue.use(VueRouter);
 
 const router = new VueRouter({
   routes,
