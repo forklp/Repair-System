@@ -1,12 +1,15 @@
 <template>
   <div class="container">
-    <mu-appbar title="Title">
+    <mu-appbar title="待接单">
       <mu-icon-button
         icon="menu"
         slot="left"
         @click="toggle" />
     </mu-appbar>
-    <mu-raised-button @click="logout" label="注销" />
+    <div style="padding: 0;">
+      <todo-card v-for="cardData in cardDatas" :data="cardData" :key="cardData.id"/>
+    </div>
+    <!-- <mu-raised-button @click="logout" label="注销" /> -->
     <mu-drawer
       :open="open"
       :docked="false"
@@ -15,14 +18,19 @@
 </template>
 
 <script>
+
+import todoCard from '../components/todoCard';
+
 export default {
   name: 'home',
   data() {
     return {
       open: false,
+      cardDatas: [],
     };
   },
-  computed: {
+  components: {
+    todoCard,
   },
   methods: {
     logout() {
@@ -35,6 +43,12 @@ export default {
     toggle() {
       this.open = !this.open;
     },
+  },
+  mounted() {
+    this.axios.get('/order/rest')
+      .then((response) => {
+        this.cardDatas = response.data;
+      });
   },
 };
 </script>

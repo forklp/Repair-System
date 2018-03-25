@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'user', # 用户系统
     'devCSRF', # csrftoken
+    'orders', # 订单
 ]
 
 MIDDLEWARE = [

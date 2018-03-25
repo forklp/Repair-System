@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
     path('csrf/', csrf.give_csrf),
+    path('order/', include('orders.urls')),
 ]
