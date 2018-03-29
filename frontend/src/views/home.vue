@@ -7,7 +7,7 @@
         @click="toggle" />
     </mu-appbar>
     <div style="padding: 0;">
-      <todo-card v-for="cardData in cardDatas" :data="cardData" :key="cardData.id"/>
+      <todo-card v-for="cardData in cardDatas" :cardData="cardData" :key="cardData.id"/>
     </div>
     <!-- <mu-raised-button @click="logout" label="注销" /> -->
     <mu-drawer

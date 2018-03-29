@@ -1,9 +1,11 @@
 import axios from 'axios';
 import cookie from './cookie';
 
-const csrftoken = cookie.getCookie('csrftoken');
+let csrftoken = '';
 
-axios.get('/csrf'); // 获取 csrftoken
+axios.get('/csrf').then(() => {
+  csrftoken = cookie.getCookie('csrftoken');
+}); // 获取 csrftoken
 
 axios.interceptors.request.use(
   (config) => {
