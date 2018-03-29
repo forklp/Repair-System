@@ -5,6 +5,7 @@
         icon="menu"
         slot="left"
         @click="toggle" />
+      <mu-icon-button icon="cached" slot="right" @click="refresh"/>
     </mu-appbar>
     <div style="padding: 0;">
       <todo-card v-for="cardData in cardDatas" :cardData="cardData" :key="cardData.id"/>
@@ -42,6 +43,13 @@ export default {
     },
     toggle() {
       this.open = !this.open;
+    },
+    refresh() {
+      this.cardDatas = [];
+      this.axios.get('/order/rest')
+        .then((response) => {
+          this.cardDatas = response.data;
+        });
     },
   },
   mounted() {
