@@ -1,5 +1,5 @@
 import login from '../views/login';
-import home from '../views/home';
+import home from '../views/order';
 
 const routes = [
   { path: '/', component: home },
